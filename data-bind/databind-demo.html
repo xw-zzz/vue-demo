@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>单向数据绑定</h1>
+        <input type="text" v-bind:value="name">
+
+        <hr></hr>
+        <h1>双向数据绑定</h1>
+        <input type="text" v-model:value="name">
+   
+    </div>
+
+    <script >
+        const x = new Vue({
+            el:"#root",
+            data() {
+                return {
+                    name: 'xxxx',
+                    url:"https://www.baidu.com/"
+                };
+            },
+        })
+    </script>
+</body>
+
+
+</html>
