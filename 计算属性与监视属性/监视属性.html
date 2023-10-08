@@ -18,25 +18,36 @@
     4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象：
     5.@c1ick="demo”和@click=:"demo($event)"效果一，但后者可以传参： -->
     <div id="root">
-        姓：<input type="text" v-model="firstName"></input><br /><br />
-        名：<input type="text" v-model="lastName"></input><br /><br />
-        姓名：<span>{{fullName}}</span>
+        <h2>今天天气很{{info}}</h2>
+        <button @click="change">切换天气</button>
     </div>
 
     <!-- 数据代理：通过一个代理对象对另一个对象中属性的操作 -->
     <script>
         new Vue({
-            el: "#root",
+            el: '#root',
             data: {
-                firstName: "张",
-                lastName: '三'
+                isHot: true
             },
             computed: {
-                //当有人读取fullName时，get就会被调用
-                // get什么时候调用？1、初次读取fullName时 2.所依赖的数据发生改变
-                fullName: {
-                    get() {
-                        return this.firstName + this.lastName
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                change(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch: {
+                isHot: {
+
+                    //初始化时让handler调用一下
+                    immediate: true,
+
+                    //handler当isHot发生改变时被调用
+                    handler(newValue,oldValue) {
+                        console.log('isHot has changed ' + newValue + '  ' + oldValue)
                     }
                 }
             }
