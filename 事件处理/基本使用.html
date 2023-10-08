@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+    事件的基本使用：
+    1.使用V-on:xxx或@xxx绑定事件，其中xxx是事件名：
+    2.事件的回调需要配置在methods.对象中，最终会在vm上：
+    3.methods中配置的函数，不要用箭头函数！否则this就不是vm了：
+    4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象：
+    5.@c1ick="demo”和@click=:"demo($event)"效果一，但后者可以传参： -->
+    <div id="root">
+        <h2>姓名:{{name}}</h2>
+        <h2>年龄:{{age}}</h2>
+        <button v-on:click="showInfo1">点我提示</button>
+        <button @click="showInfo2(19,$event)">点我提示简写</button>
+    </div>
+
+    <!-- 数据代理：通过一个代理对象对另一个对象中属性的操作 -->
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "xw",
+                age: '19'
+            },
+            methods: {
+                showInfo1() {
+                    alert('你好')
+                },
+                showInfo2(age,event) {
+                    console.log(event)
+                    alert('你好'+age)
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>

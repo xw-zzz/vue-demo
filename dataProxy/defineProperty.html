@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+
+
+    <script>
+        let number = 19
+        let person = {
+            name: "xw",
+            age: '25'
+        }
+        Object.defineProperty(person, 'age', {
+            // value: 18,
+            // enumerable: true, //控制属性是否可以枚举，默认是false,
+            // writable: true, //控制属性是否可以被修改
+            // configurable: true //控制属性是否可以被删除
+            
+            //当有人读取person的age属性时调用
+            get:function(){
+                return number
+            },
+            set:function(value){
+                number=value
+            }
+        })
+        //输出age是18
+        console.log(person)
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+    事件的基本使用：
+    1.使用V-on:xxx或@xxx绑定事件，其中xxx是事件名：
+    2.事件的回调需要配置在methods.对象中，最终会在vm上：
+    3.methods中配置的函数，不要用箭头函数！否则this就不是vm了：
+    4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象：
+    5.@c1ick="demo”和@click=:"demo($event)"效果一，但后者可以传参： -->
+    <div id="root">
+        姓：<input type="text" v-model="firstName"></input><br /><br />
+        名：<input type="text" v-model="lastName"></input><br /><br />
+        姓名：<span>{{fullName}}</span>
+    </div>
+
+    <!-- 数据代理：通过一个代理对象对另一个对象中属性的操作 -->
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                firstName: "张",
+                lastName: '三'
+            },
+            computed: {
+                //当有人读取fullName时，get就会被调用
+                // get什么时候调用？1、初次读取fullName时 2.所依赖的数据发生改变
+                fullName: {
+                    get() {
+                        return this.firstName + this.lastName
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>
