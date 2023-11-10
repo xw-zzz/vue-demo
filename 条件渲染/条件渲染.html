@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h2 v-show="true">欢迎{{name}}</h2>
+        <!-- <h2 v-show="true">欢迎{{name}}</h2>
+        -->
+
+        <!-- 使用v-if做条件渲染 -->
+        <h2 v-if="false">欢迎{{name}}</h2>
+    </div>
+
+    <!-- 数据代理：通过一个代理对象对另一个对象中属性的操作 -->
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "xw",
+                age: '19'
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./../vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h2>人员列表</h2>
+        <button @click="sortType=2" >根据年龄升序</button>
+        <button @click="sortType=1" >根据年龄降序</button>
+        <button @click="sortType=0" >原顺序</button>
+        <ul>
+            <li v-for="(p,index) of filterPersons" :key="index">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+    </div>
+
+    <!-- 数据代理：通过一个代理对象对另一个对象中属性的操作 -->
+    <script>
+        // const vm = new Vue({
+        //     el: "#root",
+        //     data: {
+        //         keyword: "",
+        //         persons: [
+        //             { "id": 1, name: "张三", age: 18 },
+        //             { "id": 2, name: "李四", age: 19 },
+        //             { "id": 3, name: "王五", age: 20 },
+        //         ],
+        //         filterPersons: []
+        //     },
+        //     watch: {
+        //         keyword: {
+        //             immediate: true,
+        //             handler(value) {
+        //                 this.filterPersons = this.persons.filter(p => {
+        //                     return p.name.indexOf(value) !== -1
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
+
+
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                sortType:0,
+                keyword: "",
+                persons: [
+                    { "id": 1, name: "张三", age: 18 },
+                    { "id": 2, name: "李四", age: 19 },
+                    { "id": 3, name: "王五", age: 20 },
+                ]
+            },
+            computed: {
+                // keyword: {
+                //     immediate: true,
+                //     handler(value) {
+                //         this.filterPersons = this.persons.filter(p => {
+                //             return p.name.indexOf(value) !== -1
+                //         })
+                //     }
+                // },
+                filterPersons(){
+                    const arr =  this.persons.filter(p => {
+                            return p.name.indexOf(this.keyword) !== -1
+                        })
+                    if(this.sortType){
+                        arr.sort((p1,p2)=>{
+                            return this.sortType === 1? p2.age - p1.age:p1.age-p2.age
+                        })
+                    }    
+                    return arr
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>
